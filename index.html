@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="weather-container">
+    <div class="weather-header">
+        <h1>Weather in {{ location }}</h1>
+        <img src="{{ url_for('static', filename='images/weather-icon.png') }}" alt="Weather Icon" class="weather-icon">
+    </div>
+
+    <form method="POST" action="/">
+        <input type="text" name="city" placeholder="Enter city..." class="search-input">
+        <button type="submit" class="search-btn">Search</button>
+    </form>
+
+    <div class="weather-details">
+        {% if location %}
+            <p><strong>Weather:</strong> {{ description }}</p>
+            <p><strong>Temperature:</strong> {{ temp }} °C</p>
+            <p><strong>Feels Like:</strong> {{ feels_like }} °C</p>
+            <p><strong>Max Temperature:</strong> {{ max_temp }} °C</p>
+            <p><strong>Min Temperature:</strong> {{ min_temp }} °C</p>
+        {% else %}
+            <p>No weather data available. Please search for a city!</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>Data provided by <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a></p>
+    </footer>
+</div>
+
+</body>
+</html>
